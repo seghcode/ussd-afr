@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000
 
 // using middleware
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 
 // using morgan
 app.use(morgan('dev'))
@@ -23,6 +23,37 @@ db.once('connected', () => console.log('Database running'))
 // ::::::
 app.get('/',(req, res) => {
     res.send('Success')
+})
+app.post('/',(req, res) => {
+  // console.log(req.body);
+  const {phoneNumber, text, sessionId} = req.body;
+  let response;
+
+  if (text === '') {
+    response = 'CON Enter your first name'
+  }
+  if (text !== '') {
+    let array = text.split('*')
+    if (array.length === 1 ) {
+      response = 'CON Enter your id number'
+    }else if (array.length > 1) {
+      // ID NUMBER
+      if (parseInt(array[1] > 0)) {
+        response = `END your full name ${array[0]} Your id number is ${array[1]} }`
+      } else {
+        response = 'END Network error, Please try again'
+      }
+    }
+    else{
+      response = 'END Network error, Please try again'
+    }
+  }
+
+  setTimeout(() => {
+    console.log(text);
+    res.send(response);
+    res.end()
+  }, 2000);
 })
 
 
