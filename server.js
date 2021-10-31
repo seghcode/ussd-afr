@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 5000
 
 // using middleware
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({
+  extended: true
+}))
 
 // using morgan
 app.use(morgan('dev'))
@@ -21,30 +23,34 @@ db.on('error', err => console.log(err))
 db.once('connected', () => console.log('Database running'))
 
 // ::::::
-app.get('/',(req, res) => {
-    res.send('Success')
+app.get('/', (req, res) => {
+  res.send('Success')
 })
-app.post('/',(req, res) => {
+app.post('/', (req, res) => {
   // console.log(req.body);
-  const {phoneNumber, text, sessionId} = req.body;
+  const {
+    phoneNumber,
+    text,
+    sessionId
+  } = req.body;
   let response;
 
   if (text === '') {
-    response = 'CON Enter your first name'
+    response = 'CON Enter your full name'
   }
   if (text !== '') {
     let array = text.split('*')
-    if (array.length === 1 ) {
+    if (array.length === 1) {
       response = 'CON Enter your id number'
-    }else if (array.length > 1) {
+    } 
+      else if (array.length > 1) {
       // ID NUMBER
       if (parseInt(array[1] > 0)) {
         response = `END your full name ${array[0]} Your id number is ${array[1]} }`
       } else {
         response = 'END Network error, Please try again'
       }
-    }
-    else{
+    } else {
       response = 'END Network error, Please try again'
     }
   }
@@ -58,4 +64,4 @@ app.post('/',(req, res) => {
 
 
 
-app.listen(PORT,()=> console.log(`server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`server running on port ${PORT}`))
