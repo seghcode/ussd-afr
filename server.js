@@ -47,7 +47,10 @@ app.post('/', (req, res) => {
       // ID NUMBER
       if (parseInt(array[1]) > 0) {
 
-        response = "CON Please confirm if you want to save your data \n 1. Confirm\n2. Cancel "
+        // response = "CON Please confirm if you want to save your data \n 1. Confirm\n2. Cancel "
+        response = `CON Please confirm if you want to save your data 
+        1. Confirm
+        2. Cancel `
       } else {
         response = 'END Network error, Please try again'
       }
