@@ -48,7 +48,7 @@ app.post('/', (req, res) => {
       if (parseInt(array[1] > 0)) {
         response = 'END your full name' + array[0]+ 'Your id number is ' + array[1]
       } else {
-        response = 'END Network error, Please try again'
+        response = 'END Network error, Please try againnnn'
       }
     } else {
       response = 'END Network error, Please try again'
