@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
       else if (array.length > 1) {
       // ID NUMBER
       if (parseInt(array[1] > 0)) {
-        response = `END your full name ${array[0]} Your id number is ${array[1]} }`
+        response = `END your full name ${array[0]} Your id number is ${array[1]}`
       } else {
         response = 'END Network error, Please try again'
       }
