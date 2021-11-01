@@ -43,18 +43,34 @@ app.post('/', (req, res) => {
     if (array.length === 1) {
       response = 'CON Enter your id number'
     } 
-      else if (array.length > 1) {
-      // ID NUMBER
-      if (parseInt(array[1]) > 0) {
-
-        // response = "CON Please confirm if you want to save your data \n 1. Confirm\n2. Cancel "
-        response = `CON Please confirm if you want to save your data 
-        1. Confirm
-        2. Cancel `
-      } else {
-        response = 'END Network error, Please try again'
+        else if (array.length === 2) {
+        // ID NUMBER
+          if (parseInt(array[1]) > 0) {
+          response = `CON Please confirm if you want to save your data 
+          1. Confirm
+          2. Cancel `
+        }
+        else {
+          response = 'END Network error, Please try again'
+        }
       }
-    } else {
+      else if(array.length === 3) {
+        if (parseInt(array[2]) === 1) {
+          let data = new User();
+        data.fullname = array[0];
+        data.id_number = array[2];
+
+        data.save(()=>{
+          response = 'END Your data was saved successfully'
+        })
+        }else if(parseInt(array[2]) === 2) {
+          response = 'END sorry, Data not saved.'
+        }
+        else{
+          response = 'END invalid input.'
+        }
+      }
+    else {
       response = 'END Network error, Please try again'
     }
   }
