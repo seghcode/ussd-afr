@@ -57,15 +57,17 @@ app.post("/", (req, res) => {
       }
     } else if (array.length === 3) {
       if (parseInt(array[2]) === 1) {
-        let data = new User();
-        data.fullname = array[0];
-        data.id_number = array[1];
-        console.log(fullname)
-        console.log(data.fullname)
-// tasam
-        data.save(() => {
-          response = "END Your data was saved successfully";
-        });
+                  response = "END Your data was saved successfully";
+
+//         let data = new User();
+//         data.fullname = array[0];
+//         data.id_number = array[1];
+//         console.log(fullname)
+//         console.log(data.fullname)
+// // tasam
+//         data.save(() => {
+//           response = "END Your data was saved successfully";
+//         });
       }
        else if (parseInt(array[2]) === 2) {
         response = "END sorry, Data not saved.";
