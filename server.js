@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Models
-const User = require("./model/user");
+const user = require("./model/user");
 
 // using middleware
 app.use(express.json());
@@ -60,11 +60,14 @@ app.post("/", (req, res) => {
         let data = new User();
         data.fullname = array[0];
         data.id_number = array[1];
-
+        console.log(fullname)
+        console.log(data.fullname)
+// tasam
         data.save(() => {
           response = "END Your data was saved successfully";
         });
-      } else if (parseInt(array[2]) === 2) {
+      }
+       else if (parseInt(array[2]) === 2) {
         response = "END sorry, Data not saved.";
       } else {
         response = "END invalid input.";
