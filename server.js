@@ -65,9 +65,9 @@ app.post("/", (req, res) => {
         console.log(first_name)
         console.log(data.first_name)
 // tasam
-        data.save(() => {
+        data.save(()=>{
           response = "END Your data was saved successfully";
-        });
+        })
       }
        else if (parseInt(array[2]) === 2) {
         response = "END sorry, Data not saved.";
