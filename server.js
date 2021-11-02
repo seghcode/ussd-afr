@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Models
-const user = require("./model/user");
+const User = require("./model/user");
 
 // using middleware
 app.use(express.json());
