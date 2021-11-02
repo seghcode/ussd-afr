@@ -6,7 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 // Models
-const user = require('./model/User')
+const user = require('./model/user')
 
 // using middleware
 app.use(express.json())
@@ -54,7 +54,7 @@ app.post('/', (req, res) => {
       }
     } else if (array.length === 3) {
       if (parseInt(array[2]) === 1) {
-        let data = new user();
+        let data = new User();
         data.fullname = array[0];
         data.id_number = array[1];
 
