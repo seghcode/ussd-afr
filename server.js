@@ -5,8 +5,6 @@ const morgan = require("morgan");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Models
-const user = require("./model/user");
 
 // using middleware
 app.use(express.json());
@@ -26,6 +24,9 @@ mongoose.connect("mongodb://localhost:27017/ussd", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err));
 db.once("connected", () => console.log("Database running"));
+
+// Models
+const User = require("./model/user");
 
 // ::::::
 app.get("/", (req, res) => {
@@ -59,11 +60,10 @@ app.post("/", (req, res) => {
       if (parseInt(array[2]) === 1) {
           // response = "END Your data was saved successfully";
 
-        let data = new user();
-        data.first_name = array[0];
-        data.id_number = array[1];
-        console.log(first_name)
-        console.log(data.first_name)
+        const data = new User();
+          data.first_name = array[0],
+          data.id_number = array[1]
+
 // tasam
         data.save(()=>{
           response = "END Your data was saved successfully";
